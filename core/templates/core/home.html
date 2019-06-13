@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <a href="/books/" class="panel-title text-primary">Books</a>
+                </div>
+                <div class="list-group">
+                    <p class="list-group-item">View Books</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <a href="/people/" class="panel-title text-success">People</a>
+                </div>
+                <div class="list-group">
+                    <p class="list-group-item">View People</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {% for review in book_reviews %}
+                    <h3 class="accordion">
+                        <img class="book-img" src="{{ review.book.book_image.url }}" alt="My image">
+                    </h3>
+                    <div class="accordion-panel">
+                        {% for author in review.book.authors.all %}
+                            {{ author.show_website_link|safe }}
+                        {% endfor %}
+                        <div style="float:right;"> 
+                            {{ review.book.show_purchase_link|safe }} 
+                        </div>
+                        <div>
+		            {{ review.show_markdown|safe }}
+                        </div>
+                    </div>
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+
+    <div class='content'>
+        <!-- /the chart goes here -->
+    </div>
+{% endblock content %}
+
+
+
+{% block javascript %}
+	<script>
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+
+		for (i = 0; i < acc.length; i++) {
+		  acc[i].addEventListener("click", function() {
+		    /* Toggle between adding and removing the "active" class,
+		    to highlight the button that controls the panel */
+		    this.classList.toggle("active");
+
+		    /* Toggle between hiding and showing the active panel */
+		    var panel = this.nextElementSibling;
+		    if (panel.style.display === "block") {
+		      panel.style.display = "none";
+		    } else {
+		      panel.style.display = "block";
+		    }
+		  });
+		} 
+	</script>
+
+	<script>
+		window.onload = function() {
+
+			$(document).ready(function(){
+	        	//alert("Yesss!");
+	        });
+		    if (window.jQuery) {  
+		        // jQuery is loaded  
+		        //alert($ === jQuery);
+		    } else {
+		        // jQuery is not loaded
+		        alert("Doesn't Work");
+		    }
+		}
+	</script>
+
+
+
+{% endblock javascript %}

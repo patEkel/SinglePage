@@ -1,0 +1,9 @@
+# byte code
+__pycache__/
+*.py[cod]
+*$.class
+
+# Django specific
+*.log
+settings.py
+local_settings.py
