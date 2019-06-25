@@ -13,6 +13,15 @@
   background-color:  #eee;
 }
 
+.center-item {
+  text-align: center;
+}
+
+.pad-item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .book-img {
   height: auto; 
   width: auto; 

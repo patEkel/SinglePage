@@ -5,9 +5,9 @@
 
 
 {% block content %}
-<div class="col-md-8 col-md-offset-2">
-    <div class="panel-heading">
-        {% for review in people_reviews %}
+<div class="col-md-12">
+    {% for review in people_reviews %}
+        <div class="panel-heading">
             <div class="book-or-person-container">
                 <h3 class="accordion">
                     <img class="person-img" src="{{ review.person.person_image.url }}" alt="My image">
@@ -22,14 +22,12 @@
                     <div>
                         {{ review.show_markdown|safe }}
                     </div>
-	    </div>
-        {% endfor %} 
-    </div>
+	        </div>
+            </div>
+        </div>
+    {% endfor %} 
 </div>
 
-<div class='content'>
-	<!-- /the chart goes here -->
-</div>
 
 {% endblock content %}
 
