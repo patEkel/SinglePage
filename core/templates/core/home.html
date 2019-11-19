@@ -30,22 +30,39 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                {% for review in book_reviews %}
-                    <h3 class="accordion">
-                        <img class="book-img" src="{{ review.book.book_image.url }}" alt="My image">
-                    </h3>
-                    <div class="accordion-panel">
-                        {% for author in review.book.authors.all %}
-                            {{ author.show_website_link|safe }}
-                        {% endfor %}
-                        <div style="float:right;"> 
-                            {{ review.book.show_purchase_link|safe }} 
+                {% if val_type == "book" %}
+                    {% for review in review_or_summary %}
+                        <h3 class="accordion">
+                            <img class="book-img" src="{{ review.book.book_image.url }}" alt="My image">
+                        </h3>
+                        <div class="accordion-panel">
+                            {% for author in review.book.authors.all %}
+                                {{ author.show_website_link|safe }}
+                            {% endfor %}
+                            <div style="float:right;"> 
+                                {{ review.book.show_purchase_link|safe }} 
+                            </div>
+                            <div>
+		                {{ review.show_markdown|safe }}
+                            </div>
                         </div>
-                        <div>
-		            {{ review.show_markdown|safe }}
+                    {% endfor %}
+                {% else %}
+                    {% for summary in review_or_summary %}
+                        <h3 class="accordion">
+                            <img class="book-img" src="{{ summary.person.person_image.url }}" alt="My image">
+                        </h3>
+                        <div class="accordion-panel">
+                            <div style="float:right;"> 
+                                {{ summary.person.show_website_link|safe }} 
+                            </div>
+                            <div>
+		                {{ summary.show_markdown|safe }}
+                            </div>
                         </div>
-                    </div>
-                {% endfor %} 
+                    {% endfor %}
+                {% endif %} 
+ 
             </div>
         </div>
     </div>
